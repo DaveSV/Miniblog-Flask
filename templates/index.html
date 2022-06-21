@@ -1,0 +1,20 @@
+{% extends "base_template.html" %}
+
+{% block title %} Miniblog / Flask Blog 1.0 {% endblock %}
+
+{% block content %}
+
+
+
+    <h3> Bienvenido a nuestro Blog. Actualmente hay {{ num_posts }} posts visibles. </h3>
+
+    <ul>
+    {% for post in posts %}
+        <img src="https://static8.depositphotos.com/1431107/938/i/600/depositphotos_9382507-stock-photo-green-tick.jpg" alt="Publicado" width="60" height="60">
+        <li>{{ post.title }}</li>
+        <li>{{ post.title_slug }}</li>
+        <li>{{ post.content }}</li>
+        </br>
+    {% endfor %}
+    </ul>
+{% endblock %}

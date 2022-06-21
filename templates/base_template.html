@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for("static", filename="base.css") }}">
+</head>
+<style type="text/css">
+    .jumbotron{
+        background-image: url(‘https://cdn.pixabay.com/photo/2015/12/06/09/15/maple-1079235_960_720.jpg’);
+        background-size: cover;
+        background-repeat: no-repeat;
+       }
+    </style>
+<body>
+    <div class="container-fluid">
+    <div class="jumbotron" id="first" style="background: url(https://cdn.pixabay.com/photo/2015/08/23/09/22/banner-902587_960_720.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+    </div>
+
+
+    <div>
+        <ul class="nav nav-tabs nav-fill">
+            <li class="nav-item">
+              <a class="nav-link" href="/index">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup/">Registrarse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/post/">Agregar Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Borrar Post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Buscar</a>
+            </li>
+          </ul>
+    </div>
+
+    <div>
+      <ul class="user-info">
+          
+          {% if current_user.is_anonymous %}
+              <li><a href="{{ url_for('login') }}">Login</a></li>
+             
+              <li><a href="{{ url_for('show_signup_form') }}">Registrar</a></li>
+          {% else %}
+              <li>{{ current_user.name }}</li>
+             
+              <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          {% endif %}
+      </ul>
+  </div>
+
+    <div>
+    {% block content %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>
